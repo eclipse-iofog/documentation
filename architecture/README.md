@@ -42,25 +42,25 @@ TBD
 TBD
 
 
-Basic deployment  
+## Basic deployment  
 <img src="basic.png" />
 
 TBD
 
 
-Subnet connectivity  
+## Subnet connectivity  
 <img src="subnet-connectivity.png" />
 
 TBD
 
 
-Inter-network connectivity  
+## Inter-network connectivity  
 <img src="inter-network-comms.png" />
 
 TBD
 
 
-Complete  
+## Complete  
 <img src="complete.png" />
 
 TBD

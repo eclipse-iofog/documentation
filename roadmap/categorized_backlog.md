@@ -12,6 +12,7 @@ This document will likely disappear shortly. It is being used as a working doc f
 - Enhance logging functionality for edge microservices
 - Peer sourcing of container images (bittorrent for microservice images)
 - General “edge attribute” registration databank in the control plane, allowing for buildout of any type of edge device information to flow through ioFog - this enables device management without becoming a device management platform
+- Standard data format for edge HW attributes (GPU, serial ports, etc.) that can be used to describe any compatible HW for each listed item
 
 ## Communication and Networking
 - Retire Connector in favor of new Skupper-based ECN model
@@ -47,3 +48,4 @@ This document will likely disappear shortly. It is being used as a working doc f
 - Add serverless functions as an edge microservice type for more constrained devices or just as an option for any hardware
 - Finish implementing current security architecture concepts
 - Distributing a precious asset (an AI model) with access control for all allowed nodes in order to sequence updates
+- Allow Docker networks to be created on edge nodes using Controller commands

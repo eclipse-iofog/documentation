@@ -10,6 +10,9 @@
 - Enhance logging functionality for edge microservices
 - Finish enhancing status information about edge microservices (including leveraging the “healthy” status provided by Docker?)
 - Universal logging capability with centralized access and distributed handling
+- iofogctl for Windows OS
+- Agent attach/detach functionality
+- Microservice move functionality
 
 ### Orchestration
 - Container tag format w/official slots for different attributes (arch, gpu, etc.)
@@ -18,11 +21,12 @@
 
 ### Developer Experience
 - Automated build of all possible edge microservice versions (arm32, arm64, gpu, vpu, etc.)
+- Better Minikube and local environment experience
 
 ### Integrations
 - Red Hat project Skupper for new ECN model
 - Eclipse Hono integration for standing up a Hono environment with edge capabilities from ioFog and key Hono components deployed and managed at the edge
-- VMware Tanzu integration for providing seamless edge capabilities for managed k8s environments
+- VMware Tanzu integration (Octant first) for providing seamless edge capabilities for managed k8s environments
 
 ### Core Engine
 - Add more control signals, such as low battery, security warning, etc.
@@ -41,6 +45,7 @@
 - Finish updating catalog model and add commercialization capabilities
 - Publish Edge Microservices Catalog (EMCat) data format for being able to host a marketplace anywhere
 - Command to only pull edge microservices to an edge node but not yet start or finish the deployment - something like “staging” or “pull only”
+- ECN Viewer UI enhancements
 
 ### Orchestration
 - Standard data format for edge HW attributes (GPU, serial ports, etc.) that can be used to describe any compatible HW for each listed item
@@ -55,14 +60,13 @@
 ### Integrations
 - Eclipse Streamsheets integration for offering no-code development and operation of device and sensor data stream processing
 - Harbor integration for management of container images, firmware binaries, and any bits
+- VMware Tanzu integration (Mission Control second) for providing seamless edge capabilities for managed k8s environments
 
 ### Core Engine
 - Deep detection of hardware capabilities for each edge node
 - Identity and certificate management and lifecycle
 - External “helpers” loaded by Agent to fix things on the host, detect location of CUDA, etc. automatically
-- Add serverless functions as an edge microservice type for more constrained devices or just as an option for any hardware
 - Finish implementing current security architecture concepts
-- Add VMs and serverless and begin offering unikernel code in release version
 - Strict control over docker containers on a node - whitelisting, cache fixes, etc.
 - Enhanced management capabilities over edge nodes - maybe even OS updates, etc.?
 
@@ -88,6 +92,7 @@
 - Tangle integration for immutable, auditable edge ledger
 - Edge FS integration for storage management from edge to cloud
 - Eclipse Che for easier developer experience
+- Spiffe integration for identities
 
 ### Core Engine
 - Immutable, auditable ledger for edge events
@@ -96,3 +101,5 @@
 - Implement event-driven system activities with audit logging, such as “pallet arrived, weight taken, bill of lading accepted”
 - Define a master list of system events, such as “edge node joined ECN, security policy violation noted, etc.”
 - Add multi-tenant functionality for the edge
+- Add VMs, Firecracker VMs, and serverless and begin offering unikernel code in release version
+- Add serverless functions as an edge microservice type for more constrained devices or just as an option for any hardware

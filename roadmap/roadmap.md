@@ -105,3 +105,8 @@
 - Add multi-tenant functionality for the edge
 - Add VMs, Firecracker VMs, and serverless and begin offering unikernel code in release version
 - Add serverless functions as an edge microservice type for more constrained devices or just as an option for any hardware
+
+## No Timeline
+- dapr.io integration
+- Harbor integration (image registry)
+- Docker image sharing (use Bittorrent?)

@@ -17,21 +17,23 @@
 ### Orchestration
 - Container tag format w/official slots for different attributes (arch, gpu, etc.)
 - Expand x86/ARM architecture pattern to include any number of defined architectures and architecture+capability labels
-- Develop a high-level edge application orchestration language or YAML file format that allows decisions to be made about where to move which microservices, etc.
+- Develop a high-level edge application orchestration language or YAML file format that allows decisions to be made about where to move which microservices, etc. (Allocate microservices to agents with defined tags, as opposed to specific agent.)
 
 ### Developer Experience
 - Automated build of all possible edge microservice versions (arm32, arm64, gpu, vpu, etc.)
-- Better Minikube and local environment experience
+- Better Minikube and local environment experience (show how this complements with the platform repo / tools)
 
 ### Integrations
 - Red Hat project Skupper for new ECN model
-- Eclipse Hono integration for standing up a Hono environment with edge capabilities from ioFog and key Hono components deployed and managed at the edge
+- Eclipse Hono integration for standing up a Hono environment with edge capabilities from ioFog and key Hono components deployed and managed at the edge (Expose as tutorial series?, How to communicate the Hono integration?)
 - VMware Tanzu integration (Octant first) for providing seamless edge capabilities for managed k8s environments
 
 ### Core Engine
 - Add more control signals, such as low battery, security warning, etc.
-- Finalize definition of agent-to-controller interface and APIs so we can roll out any number of agents and open the implementation to all
+- Finalize definition of agent-to-controller interface and APIs so we can roll out any number of agents and open the implementation to all (API definition should be complete for 2.0, but the process of developing your own agents doesn't have to be immediately in 2.0?)
 - Add more interface and hardware abstractions… maybe adding an interface registry for looking up with microservice to run for which detected interface?
+- Docker pruning in Agent
+- Registry management in Controller
 
 ## Q2 2020
 ### Edge Compute Networks

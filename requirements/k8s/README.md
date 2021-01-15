@@ -1,6 +1,3 @@
-# Overview
-
-The ioFog Kubernetes integration allows user to manage both cloud and edge workloads via `kubectl` and `iofogctl`.
 
 # Use Cases
 
@@ -20,7 +17,6 @@ The Control Plane is a set of ioFog components that run on the Kubernetes cluste
 
 ```
 kubectl apply -f controlplane.yaml
-kubectl create -f controlplane.yaml
 kubectl edit controlplane NAME
 kubectl describe controlplane NAME
 kubectl get controlplanes

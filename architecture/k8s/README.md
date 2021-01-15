@@ -4,7 +4,7 @@ The ioFog Kubernetes integration allows user to manage both cloud and edge workl
 
 # Use Cases
 
-The following use cases are achieved through the following Custom Resources and corresponding Custom Controllers (in Operator):
+The following use cases are achieved through these Custom Resources and their corresponding Custom Controllers (in Operator):
 
 * Control Plane
 * Agent
@@ -14,7 +14,9 @@ The following use cases are achieved through the following Custom Resources and 
 * Edge Resource
 
 
-#### Manage Control Plane
+#### 1. Manage Control Plane
+
+The Control Plane is a set of ioFog components that run on the Kubernetes cluster as containers. These include the Controllers and the Port Manager.
 
 ```
 kubectl apply -f controlplane.yaml
@@ -26,9 +28,11 @@ kubectl delete controlplane NAME
 ...
 ```
 
-#### Manage Agents
+#### 2. Manage Agents
 
-*Agents cannot be created / deleted via kubectl as this would involve Operator SSHing into Agents.*
+Agents are edge devices running the ioFog Agent stack. 
+
+Agents cannot be created / deleted via `kubectl` as this would involve the Operator SSHing into remote hosts to install/uninstall the ioFog Agent stack.
 
 ```
 kubectl edit agent NAME
@@ -37,7 +41,9 @@ kubectl get agent
 ...
 ```
 
-#### Manage Applications
+#### 3. Manage Applications
+
+Applications are a set of Microservices that can be run on either the cloud or the edge, or both.
 
 ```
 kubectl apply -f app.yaml
@@ -49,7 +55,9 @@ kubectl delete application NAME
 ...
 ```
 
-#### Manage Microservices
+#### 4. Manage Microservices
+
+Microservices are individual workloads which run as containers on either the cloud or the edge, or both.
 
 ```
 kubectl apply -f msvc.yaml
@@ -61,7 +69,9 @@ kubectl delete microservices NAME
 ...
 ```
 
-#### Manage Routes
+#### 5. Manage Routes
+
+Routes are a unidirectional channels which allow Microservices to reach each other through ioMessages.
 
 ```
 kubectl apply -f route.yaml
@@ -73,7 +83,9 @@ kubectl delete routes NAME
 ...
 ```
 
-#### Manage Edge Resources
+#### 6. Manage Edge Resources
+
+Edge Resources represent arbitrary, user-defined software and devices running on Agents.
 
 ```
 kubectl apply -f edge-resource.yaml

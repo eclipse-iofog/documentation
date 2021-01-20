@@ -7,6 +7,10 @@
 
 [3. Custom Resources](#3-custom-resources)
 
+[4. Routers](#4-routers)
+
+[5. Port Manager](#5-port-manager)
+
 # 1. Overview
 
 An ioFog Edge Compute Network ('ECN') consists of a Control Plane, a set of Agents, Routers, and user-defined Applications.
@@ -74,3 +78,16 @@ Controllers and Routers have public APIs which can be exposed by `LoadBalancer` 
 
 ...
 
+# 4. Routers
+
+Routers are components of an Edge Compute Network responsible for establishing unidirectional communication links between Microservices.
+
+Each Control Plane contains an Interior Router. When an Agent is deployed to the ECN, the Agent's Edge Router connects to the Interior Router. This connection allows users to access Microservice endpoints running on Agents without configuring inbound network traffic rules to the network the Agents reside in. This is because the Edge router establishes a bi-directional connection with the Interior Router.
+
+# 5. Port Manager
+
+The Port Manager is a component of the Control Plane which is responsible for managing Kubernetes Services for the purposes of exposing Microservice endpoints to users.
+
+When a user creates a Public Port for a Microservice, the Port Manager becomes aware of this and creates the requisite Kubernetes Services to enable external access.
+
+The Port Manager can be configured to make `LoadBalancer` Services or `ClusterIP` Services with a separate `Ingress` configured.

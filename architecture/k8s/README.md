@@ -17,7 +17,7 @@ Users can manage both their ECNs through `iofogctl` or `kubectl`. This capabilit
 
 # 2. ioFog Operator
 
-The [iofog Operator](github.com/eclipse-iofog/iofog-operator) manages Custom Controllers for all ioFog Custom Resources. Users can make declarative changes to Custom Resources and the Operator will reconcile the differences between the current state of the ECN and the desired state as required.
+The [iofog Operator](https://github.com/eclipse-iofog/iofog-operator) manages Custom Controllers for all ioFog Custom Resources. Users can make declarative changes to Custom Resources and the Operator will reconcile the differences between the current state of the ECN and the desired state as required.
 
 ## Deployment
 

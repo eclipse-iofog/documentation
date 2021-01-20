@@ -9,7 +9,7 @@
 
 ioFog provides an integration with Kubernetes so as to allow users to manage cloud and edge workloads through `kubectl`.
 
-The integration is implemented through the following Custom Resources and their corresponding Custom Controllers (in ioFog Operator):
+The integration is implemented through the following Custom Resources and their corresponding Custom Controllers (in the ioFog Operator):
 
 * Control Plane
 * Agent
@@ -20,7 +20,7 @@ The integration is implemented through the following Custom Resources and their 
 
 # 2. Use Cases
 
-#### 2.1 Manage Control Plane
+## 2.1 Manage Control Plane
 
 The Control Plane is a set of ioFog components that run on the Kubernetes cluster as containers. These include the Controllers, the Router and the Port Manager.
 
@@ -33,7 +33,7 @@ kubectl delete controlplane NAME
 ...
 ```
 
-#### 2.2 Manage Agents
+## 2.2 Manage Agents
 
 Agents are edge devices running the ioFog Agent stack. 
 
@@ -48,7 +48,7 @@ kubectl get agent
 ...
 ```
 
-#### 2.3 Manage Applications
+## 2.3 Manage Applications
 
 Applications are a set of Microservices that can be run on the edge.
 
@@ -62,7 +62,7 @@ kubectl delete application NAME
 ...
 ```
 
-#### 2.4 Manage Microservices
+## 2.4 Manage Microservices
 
 Microservices are individual workloads which run as containers on the edge.
 
@@ -76,7 +76,7 @@ kubectl delete microservices NAME
 ...
 ```
 
-#### 2.5 Manage Routes
+## 2.5 Manage Routes
 
 Routes are a unidirectional channels which allow Microservices to reach each other through ioMessages.
 
@@ -90,7 +90,7 @@ kubectl delete routes NAME
 ...
 ```
 
-#### 2.6 Manage Edge Resources
+## 2.6 Manage Edge Resources
 
 Edge Resources represent arbitrary, user-defined software and devices running on Agents.
 

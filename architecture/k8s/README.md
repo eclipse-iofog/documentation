@@ -1,9 +1,9 @@
 
 # Contents
 
-######[1. Overview](#1-overview)
-######[2. ioFog Operator](#2-iofog-operator)
-######[3. Custom Resources](#3-custom-resources)
+[1. Overview](#1-overview)
+[2. ioFog Operator](#2-iofog-operator)
+[3. Custom Resources](#3-custom-resources)
 
 # 1. Overview
 

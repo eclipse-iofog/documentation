@@ -13,7 +13,7 @@ An ioFog Edge Compute Network ('ECN') consists of a Control Plane, a set of Agen
 
 For production environments, the ioFog Control Plane is typically deployed on a Kubernetes cluster.
 
-![](https://drive.google.com/file/d/1Kl0G5ZDS7XSG2PfwB_4XPB5OyWkI-Y0K/view?usp=sharing)
+![](https://github.com/eclipse-iofog/documentation/blob/k8s-doc/architecture/k8s/assets/overview.png?raw=true)
 
 Users can manage both their ECNs through `iofogctl` or `kubectl`. This capability is provided through a set of Custom Resources and corresponding Custom Controllers which run inside the ioFog Operator.
 

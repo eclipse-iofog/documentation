@@ -39,6 +39,7 @@ The deployment process will create the following Custom Resource Definitions:
 * Agents
 * Applications
 * Microservices
+* Public Ports
 * Routes
 * Edge Resources
 
@@ -58,25 +59,47 @@ All components of the Control Plane are deployed as Kubernetes Deployments. User
 
 Controllers and Routers have public APIs which can be exposed by `LoadBalancer` Services or `ClusterIP` services with separate `Ingress` configured.
 
+The Control Plane CR YAML specification can be found [here](https://github.com/eclipse-iofog/iofog-operator/blob/develop/config/cr/controlplane.yaml).
+
 ## Agents
 
-...
+Agents are edge hosts that are running the ioFog Agent stack. The Agent Custom Resource can be used to connect an existing Agent to the corresponding ECN or to deploy a new Agent altogether and install the ioFog stack on a remote host.
+
+When deploying a new Agent, the Operator is responsible for installing the ioFog Agent stack on a remote host via SSH. As such, users must ensure that the cluster network and the remote host network allow for the required SSH connection.
+
+The Agent CR YAML specification will be available when it is supported.
 
 ## Applications
 
-...
+Applications are a group of Microservices that can be managed together.
+
+The Application CR YAML specification will be available when it is supported.
 
 ## Microservices
 
-...
+Microservices are definitions of a container and associated resources for the purposes of orchestrating containers on the edge.
+
+The Microservice CR YAML specification will be available when it is supported.
+
+###### Public Ports
+
+Public Ports describe externally accessible endpoints for Microservices. They are facilitated by the ECN's Routers and Port Manager.
+
+Public Ports allow bi-directional traffic to Microservices at the edge without the need to create firewall rules for inbound traffic in the edge network.
+
+The Public Port CR YAML specification will be available when it is supported.
 
 ## Routes
 
-...
+Routes are a unidirectional communication channels which allow Microservices to reach each other through ioMessages.
+
+The Route CR YAML specification will be available when it is supported.
 
 ## Edge Resources
 
-...
+Edge Resources represent arbitrary, user-defined software and devices running on Agents.
+
+The Edge Resource CR YAML specification will be available when it is supported.
 
 # 4. Routers
 

@@ -79,15 +79,13 @@ The Application CR YAML specification will be available when it is supported.
 
 Microservices are definitions of a container and associated resources for the purposes of orchestrating containers on the edge.
 
-The Microservice CR YAML specification will be available when it is supported.
-
 ###### Public Ports
 
 Public Ports describe externally accessible endpoints for Microservices. They are facilitated by the ECN's Routers and Port Manager.
 
 Public Ports allow bi-directional traffic to Microservices at the edge without the need to create firewall rules for inbound traffic in the edge network.
 
-The Public Port CR YAML specification will be available when it is supported.
+The Microservice CR YAML specification will be available when it is supported.
 
 ## Routes
 

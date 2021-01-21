@@ -39,7 +39,6 @@ The deployment process will create the following Custom Resource Definitions:
 * Agents
 * Applications
 * Microservices
-* Public Ports
 * Routes
 * Edge Resources
 

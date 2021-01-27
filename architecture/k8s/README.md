@@ -58,7 +58,65 @@ All components of the Control Plane are deployed as Kubernetes Deployments. User
 
 Controllers and Routers have public APIs which can be exposed by `LoadBalancer` Services or `ClusterIP` services with separate `Ingress` configured.
 
-The Control Plane CR YAML specification can be found [here](https://github.com/eclipse-iofog/iofog-operator/blob/develop/config/cr/controlplane.yaml).
+The following is the Control Plane CR YAML spec:
+
+```YAML
+apiVersion: iofog.org/v2
+kind: ControlPlane
+metadata:
+  namespace: default
+  name: iofog
+spec:
+
+# Required
+  user:
+    name: Serge
+    surname: Radinovich
+    email: serge@edgeworx.io
+    pwSecret: iofog-cr-pw
+  replicas:
+    controller: 1
+
+# Optional
+  services:
+    controller:
+      type: LoadBalancer
+      address: ""
+    router:
+      type: LoadBalancer
+      address: ""
+    proxy:
+      type: LoadBalancer
+      address: ""
+  database:
+    provider: ""
+    host: ""
+    port: 0
+    user: ""
+    password: ""
+    databaseName: ""
+  images:
+    pullSecret: ""
+    kubelet: ""
+    controller: ""
+    router: ""
+    portManager: ""
+    proxy: ""
+  ingresses:
+    router:
+      address: ""
+      httpPort: 0
+      messagePort: 0
+      interiorPort: 0
+      edgePort: 0
+    httpProxy:
+      address: ""
+    tcpProxy:
+      address: ""
+  controller:
+    pidBaseDir: ""
+    ecnViewerPort: 0
+```
 
 ## Agents
 
@@ -66,17 +124,161 @@ Agents are edge hosts that are running the ioFog Agent stack. The Agent Custom R
 
 When deploying a new Agent, the Operator is responsible for installing the ioFog Agent stack on a remote host via SSH. As such, users must ensure that the cluster network and the remote host network allow for the required SSH connection.
 
-The Agent CR YAML specification will be available when it is supported.
+The following is the Agent CR YAML spec:
+
+```YAML
+apiVersion: iofog.org/v2
+kind: Agent
+metadata:
+  namespace: default
+  name: meerkat
+spec:
+
+# Required
+  host: 30.40.50.6
+  ssh:
+    user: foo
+    keySecret: agent-meerkat-key
+    port: 22
+
+# Optional
+  config:
+    description: agent running on VM
+    latitude: 46.204391
+    longitude: 6.143158
+    agentType: auto
+    dockerUrl: unix:///var/run/docker.sock
+    diskLimit: 50
+    diskDirectory: /var/lib/iofog-agent/
+    memoryLimit: 4096
+    cpuLimit: 80
+    logLimit: 10
+    logDirectory: /var/log/iofog-agent/
+    logFileCount: 10
+    statusFrequency: 10
+    changeFrequency: 10
+    deviceScanFrequency: 60
+    bluetoothEnabled: true
+    watchdogEnabled: false
+    abstractedHardwareEnabled: false
+    upstreamRouters: ['default-router']
+    networkRouter: ''
+    routerConfig:
+      routerMode: edge
+      messagingPort: 5672
+      edgeRouterPort: 56721
+      interRouterPort: 56722
+    dockerPruningFrequency: 1
+    logLevel: INFO
+    availableDiskThreshold: 90
+  scripts:
+    dir: /agent-scripts
+    deps:
+      entrypoint: install_deps.sh
+    install:
+      entrypoint: install_iofog.sh
+      args:
+        - 2.0.1
+    uninstall:
+      entrypoint: uninstall_iofog.sh
+```
 
 ## Applications
 
 Applications are a group of Microservices that can be managed together.
 
-The Application CR YAML specification will be available when it is supported.
+The following is the Application CR YAML spec:
+
+```YAML
+apiVersion: iofog.org/v2
+kind: Application
+metadata:
+  name: health-care-wearable
+  namespace: default
+spec:
+  microservices:
+    - name: heart-rate-monitor
+      agent:
+        name: horse-1
+      images:
+        arm: edgeworx/healthcare-heart-rate:arm-v1
+        x86: edgeworx/healthcare-heart-rate:x86-v1
+      container:
+        rootHostAccess: false
+        ports: []
+      config:
+        test_mode: true
+        data_label: Anonymous Person
+        nested_object:
+          key: 42
+          deep_nested:
+            foo: bar
+    - name: heart-rate-viewer
+      agent:
+        name: horse-1
+      images:
+        arm: edgeworx/healthcare-heart-rate-ui:arm
+        x86: edgeworx/healthcare-heart-rate-ui:x86
+        registry: remote
+      container:
+        rootHostAccess: false
+        ports:
+          - internal: 80
+            external: 5000
+            public: 5001
+            protocol: tcp
+        env:
+          - key: BASE_URL
+            value: http://localhost:8080/data
+      config:
+        test: 54
+```
 
 ## Microservices
 
 Microservices are definitions of a container and associated resources for the purposes of orchestrating containers on the edge.
+
+The following is the Microservice CR YAML spec:
+
+```YAML
+apiVersion: iofog.org/v2
+kind: Microservice
+metadata:
+  name: heart-rate-monitor
+  namespace: default
+spec:
+  application: Healthcare Wearable
+  agent:
+    name: zebra-1
+  images:
+    x86: edgeworx/healthcare-heart-rate:x86-v1
+    arm: edgeworx/healthcare-heart-rate:arm-v1
+    registry: remote
+    catalogId: 0
+  container:
+    rootHostAccess: false
+    volumes:
+      - hostDestination: /tmp/msvc
+        containerDestination: /data
+        accessMode: 'rw'
+        type: 'bind'
+    env:
+      - key: BASE_URL
+        value: http://localhost:8080/data
+    ports:
+      - internal: 80
+        external: 5000
+        public: 5001
+        host: default-router
+        protocol: http
+    commands:
+      - 'dbhost'
+      - 'localhost:27017'
+  config:
+    data_label: test_mode=false_cross_agent_microservice_routing_aug_27
+    test_mode: true
+  rebuild: false
+```
 
 ###### Public Ports
 
@@ -90,13 +292,52 @@ The Microservice CR YAML specification will be available when it is supported.
 
 Routes are a unidirectional communication channels which allow Microservices to reach each other through ioMessages.
 
-The Route CR YAML specification will be available when it is supported.
+The following is the Route CR YAML spec:
+
+```YAML
+apiVersion: iofog.org/v2
+kind: Route
+metadata:
+  name: my-route
+spec:
+  from: frontend-msvc
+  to: backend-msvc
+```
 
 ## Edge Resources
 
 Edge Resources represent arbitrary, user-defined software and devices running on Agents.
 
-The Edge Resource CR YAML specification will be available when it is supported.
+The following is the Edge Resource CR YAML spec:
+
+```YAML
+apiVersion: iofog.org/v2
+kind: EdgeResource
+metadata:
+  name: smart-door
+  namespace: default
+spec:
+  name: smart-door
+  version: v1.0.0
+  description: Very smart door
+  interfaceProtocol: https
+  interface:
+    endpoints:
+      - name: open
+        method: PUT
+        url: /open
+      - name: close
+        method: PUT
+        url: /close
+      - name: destroy
+        method: DELETE
+        url: /endOfTheWorld
+  display:
+    name: Smart Door
+    icon: accessible-forward
+    color: rgb(90, 200, 250)
+  custom: {}
+```
 
 # 4. Routers
 
